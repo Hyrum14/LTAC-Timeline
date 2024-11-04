@@ -1,0 +1,411 @@
+:root {
+    --timelineHeight: 0px;
+    --timelineWidth: 0px;
+    --tickDisplacement: 0px;
+    --buttonDeepRed: 
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "Rubik", sans-serif;
+}
+
+body {
+    margin: 0px;
+    overflow: hidden;
+}
+
+#debug {
+    color: white;
+    background-color: #000d58;
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.textInput {
+    font-size: 23px;
+    font-weight: 500;
+    text-align: center;
+    background-color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 10px 0px 0px 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.textInput:hover {
+    background-color: #ffeeee;
+}
+
+.textInput:focus {
+    background-color: white;
+    outline: none;
+    cursor: text;
+}
+
+.switch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #bb2244;
+    user-select: none;
+    cursor: pointer;
+}
+
+.switch:hover {
+    background-color: #a81837;
+}
+
+.eventContainer {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.eventRow {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.event {
+    border-radius: 10px;
+    position: relative;
+}
+
+.event > .eventMarker {
+    width: 5px;
+    height: 5px;
+}
+
+.event > .eventMarker::after {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: #000d58;
+    transform: rotate(45deg);
+    position: relative;
+}
+
+.event > .eventDate {
+    font-size: 9px;
+    font-weight: 700;
+    user-select: none;
+}
+
+.event > p.eventText {
+    font-size: 7px;
+    text-align: center;
+    padding: 0px 3px;
+    margin: 0px;
+    user-select: none;
+}
+
+.generalEvent {
+    width: 150px;
+    height: calc(100% - 6px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    margin-right: -150px;
+    box-shadow: 0px 0px 10px -2px black;
+}
+
+.generalEvent > .eventMarker::after {
+    bottom: 5px;
+}
+
+.speakerEvent {
+    width: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+}
+
+.speakerEvent > .eventMarker {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    /* margin-bottom: -5px; */
+    justify-self: center;
+}
+
+.speakerEvent > .eventDate {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: end;
+}
+
+.speakerEvent > p.eventText {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+    font-size: 9px;
+}
+
+#widget {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #dfecf2;
+    border-radius: 20px;
+}
+
+#titleContainer {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#title {
+    font-size: 50px;
+    margin: 0px 20px;
+}
+
+#timelineContainer {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+}
+
+#timelineContainer > div {
+    width: 100%;
+    height: 100%;
+}
+
+.options {
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.options > .content {
+    width: 100%;
+    height: 100%;
+}
+
+.options > .content > .displayOption {
+    width: 100%;
+    height: 100%;
+}
+
+#upperOptions > .content {
+    border-radius: 20px 20px 0px 0px;
+}
+
+.speakerOverview {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    padding: 0px 30px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+
+.speakerOverview > .speakerOverviewRow {
+    width: var(--timelineWidth);
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.speakerOverviewRow > .speaker {
+    height: 100%;
+    font-size: 12px;
+    text-align: center;
+    align-content: center;
+    background-color: #70a5d0;
+    border: 1px solid black;
+    border-radius: 3px;
+    position: relative;
+}
+
+#lowerOptions > .content {
+    border-radius: 0px 0px 20px 20px;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    background-color: #b2d1df;
+    position: relative;
+    z-index: 10;
+}
+
+.shadowCaster {
+    width: 100%;
+    height: 0px;
+    box-shadow: 0px 0px 10px 2px;
+    position: relative;
+    z-index: 6;
+}
+
+#timelineBody {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+    /* cursor: none; */
+}
+
+.timelineFiller {
+}
+
+#timelineContent {
+    height: var(--timelineHeight);
+    background-color: white;
+    padding: 0px 30px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    cursor: grab;
+}
+
+#timelineContent:active {
+    cursor: grabbing;
+}
+
+#timelineBase {
+    width: var(--timelineWidth);
+    height: var(--timelineHeight);
+    margin-bottom: calc(-1 * var(--timelineHeight));
+}
+
+#timelineElements {
+    height: var(--timelineHeight);
+}
+
+#tickContainer {
+    width: var(--timelineWidth);
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.tick {
+    height: 50px;
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: -1.5px;
+    margin-right: var(--tickDisplacement);
+}
+
+.tick.show {
+    display: flex;
+}
+
+.tick > .line {
+    width: 3px;
+    height: 10px;
+    background-color: gray;
+    border-radius: 2px;
+}
+
+.tick.longTick > .line {
+    height: 20px;
+}
+
+.tick.longTick.highlighted > .line {
+    height: 50px;
+}
+
+.tick > .year {
+    display: none;
+    text-align: center;
+    font-size: 10px;
+    color: gray;
+    letter-spacing: 1px;
+    margin: 0px -30px;
+    margin-bottom: -10px;
+    user-select: none;
+}
+
+.tick.longTick > .year {
+    display: block;
+}
+
+#timelineElements {
+    width: var(--timelineWidth);
+    height: var(--timelineHeight);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.mainEventContainer {
+    width: 100%;
+    height: 120px;
+}
+
+#timelineOverlay {
+    height: var(--timelineHeight);
+    margin-bottom: calc(-1 * var(--timelineHeight));
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+#timelineOverlay .overlayElement {
+    position: relative;
+    bottom: var(--timelineHeight);
+}
+
+#dateRangeContainer {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+#dateRangeContainer.changed .dateRangeOption {
+    opacity: 50%;
+}
+
+#dateOptionsContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 10px;
+}
+
+#dateRangeContainer > div {
+    height: 100%;
+}
+
+.dateRangeOption {
+    height: 100%;
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px;
+}
+
+.dateRangeOptionYear {
+    width: 70px;
+    height: 100%;
+}
+
+.ADBCswitch {
+    width: 40px;
+    height: 100%;
+    border-radius: 0px 10px 10px 0px;
+}
+
+#hiddenContainer {
+    display: none;
+}

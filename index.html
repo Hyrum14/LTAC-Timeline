@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book of Mormon Timeline</title>
+</head>
+<body>
+    <div id="widget">
+        <div id="titleContainer">
+            <h1 id="title">Book of Mormon Timeline</h1>
+            <div id="debug">Debug</div>
+        </div>
+        <div id="timelineContainer">
+            <div id="upperOptions" class="options">
+                <div class="content"></div>
+                <div class="shadowCaster"></div>
+            </div>
+
+            <div id="timelineBody">
+                <div id="timelineContent" class="timelineFiller">
+                    <div id="timelineBase">
+                        <div id="tickContainer"></div>
+                    </div>
+                    <div id="timelineElements">
+                        <div id="speakerEvents" class="eventContainer mainEventContainer">5</div>
+                        <div id="generalEvents" class="eventContainer mainEventContainer">3</div>
+                    </div>
+                </div>
+                <div id="timelineOverlay" class="timelineFiller">
+                    <div id="dateRangeContainer">
+                        <div id="dateOptionsContainer">
+                            <div class="leftOptions overlayElement">
+                                <div id="dateRangeStart" class="dateRangeOption">
+                                    <input type="text" name="dateRangeStartYear" id="dateRangeStartYear" class="dateRangeOptionYear textInput" value="700">
+                                    <div id="dateRangeStartADBC" class="switch ADBCswitch">BC/AD</div>
+                                </div>
+                            </div>
+                            <div class="rightOptions overlayElement">
+                                <div id="dateRangeEnd" class="dateRangeOption">
+                                    <input type="text" name="dateRangeEndYear" id="dateRangeEndYear" class="dateRangeOptionYear textInput" value="500">
+                                    <div id="dateRangeEndADBC" class="switch ADBCswitch">AD/BC</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="lowerOptions" class="options">
+                <div class="shadowCaster"></div>
+                <div class="content"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="hiddenContainer"></div>
+</body>
+
+<script src="index.js" type="module"></script>
+
+</html>
